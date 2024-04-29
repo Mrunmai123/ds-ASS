@@ -1,0 +1,59 @@
+import java.util.*;
+
+class TimeServer
+{
+    private List<Integer>clocks;
+    
+    public TimeServer(List<Integer>clocks)
+    {
+        this.clocks=clocks;
+    }
+    
+    public void synchronizeClocks()
+    {
+        int sum=0;
+        int average;
+        
+        for(int clock:clocks)
+        {
+            sum+=clock;
+        }
+        average=sum/clocks.size();
+        for(int i=0;i<clocks.size();i++)
+        {
+            clocks.set(i,average);
+        }
+        
+    }
+   public List<Integer> getClocks()
+   {
+       return clocks;
+   }
+   
+   public static void main(String args[])
+   {
+       List<Integer>clocks=new ArrayList<>();
+       clocks.add(100);
+       clocks.add(120);
+       clocks.add(150);
+       clocks.add(200);
+       
+       TimeServer timeServer =new TimeServer(clocks);
+       
+       System.out.println("Actual timer");
+       for(int clock:clocks)
+       {
+           System.out.println(clock);
+           
+       }
+       System.out.println("");
+       timeServer.synchronizeClocks();
+       
+       List<Integer>synchronizedClocks=timeServer.getClocks();
+       System.out.println("Synchronized clock timer");
+       for(int clock:synchronizedClocks)
+       {
+           System.out.println(clock);
+       }
+   }
+}
